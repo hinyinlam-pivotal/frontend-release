@@ -1,0 +1,9 @@
+---
+name: frontend
+
+dependencies:
+  - ruby_2.4.1
+
+#always relative to "src/" folder
+files:
+ - frontend/**/*
