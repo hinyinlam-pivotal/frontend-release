@@ -1,0 +1,37 @@
+name: frontend
+
+stemcells:
+  - alias: default
+    os: ubuntu-trusty
+    version: latest
+
+releases:
+  - name: frontend
+    version: latest
+
+instance_groups:
+  - name: frontend
+    azs: [z1, z2, z3]
+    instances: 3
+    vm_type: minimal
+    stemcell: default
+    networks:
+      - name: private
+    vm_extensions:
+      - attached_to_frontend_lb
+
+    jobs:
+      - name: frontend
+        releases: frontend
+        properties:
+          frontend:
+            port: 80
+            etcd_servers:
+              - 10.0.1.3
+              - 10.0.1.4
+              - 10.0.1.5
+update:
+  canaries: 1
+  max_in_flight: 5
+  canary_watch_time: 1000-60000
+  update_watch_time: 1000-60000

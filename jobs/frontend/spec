@@ -2,7 +2,7 @@
 name: frontend
 
 templates:
-  frontend_ctl.erb: bin/frontend_ctl
+  frontend_ctl.sh.erb: bin/frontend_ctl
 
 packages:
   - frontend
